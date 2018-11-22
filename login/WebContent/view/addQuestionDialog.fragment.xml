@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="添加问题"
+		type="Message">
+		<content>
+			<VBox>
+				<Text
+					text="题目: "
+					class="sapUiTinyMarginBottom" />
+				<TextArea
+					id="submitDialogTextarea"
+					liveChange="addQuestionDialogTextArea"
+					width="500PX"
+					height="50PX"
+					value="{/Name}"
+					placeholder="请输入题目（必填）" />
+				<Text
+					text="题目类型: "
+					class="sapUiTinyMarginTop"></Text>
+				<HBox>
+					<RadioButton
+						groupName="GroupA"
+						text="单选"
+						selected="{/singalChoice}"
+						select="selectSingalChoice"
+						class="sapUiTinyMarginEnd" />
+					<RadioButton
+						groupName="GroupA"
+						text="多选"
+						selected="{/multiChoice}"
+						select="selectMultiChoice"
+						class="sapUiTinyMarginEnd" />
+					<RadioButton
+						groupName="GroupA"
+						selected="{/freeAnswer}"
+						select="selectFreeAnswer"
+						text="填空" />
+				</HBox>
+				<Text
+					text="是否必填: "
+					class="sapUiTinyMarginTop"></Text>
+				<CheckBox
+					id="Select"
+					selected="{/Require}"
+					select="onClickBox"
+					text="必填">
+				</CheckBox>
+				<Text
+					text="添加选项: "
+					class="sapUiTinyMarginBottom" visible="{/isChoices}"></Text>
+				<HBox visible="{/isChoices}">
+					<TextArea
+						placeholder="请输入要添加的选项"
+						width="450PX"
+						height="50PX"
+						class="sapUiTinyMarginEnd" />
+					<core:Icon
+						src="sap-icon://add"
+						size="30px"
+						color="grey"
+						press="onAddChoose"
+						class="sapUiTinyMarginTop" />
+				</HBox>
+				<List
+					id="searchList"
+					class="sapUiResponsiveMargin"
+					width="auto"
+					mode="Delete"
+					delete="onChoiceDelete"
+					visible="{/isChoices}"
+					items="{/Choices/}">
+					<CustomListItem>
+						<FlexBox
+							alignItems="Start"
+							justifyContent="Start"
+							width="100%">
+							<items>
+								<Text text="{}"></Text>
+							</items>
+						</FlexBox>
+					</CustomListItem>
+				</List>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button
+				text="确认"
+				press="onAddQuestionDialogOk" />
+		</beginButton>
+		<endButton>
+			<Button
+				text="取消"
+				press="onAddQuestionDialogEnd" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

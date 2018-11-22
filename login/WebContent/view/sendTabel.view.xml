@@ -1,0 +1,147 @@
+<core:View
+	controllerName="sap.ui.demo.walkthrough.controller.sendTabel"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+	height="100%"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	displayBlock="true">
+	<Title
+		text="发送表单"
+		textAlign="Center"
+		width="100%"
+		class="sapUiSmallMarginTop"
+		titleStyle="H1" />
+	<FlexBox width="1600PX">
+		<l:HorizontalLayout height="100%">
+			<FlexBox width="300PX">
+				<l:VerticalLayout
+					width="100%"
+					BackgroundDesign="Translucent">
+					<l:HorizontalLayout width="100%">
+						<Text
+							text="添加问题"
+							width="270PX"
+							textAlign="Center"
+							class="sapUiTinyMarginTop" />
+						<core:Icon
+							src="sap-icon://add"
+							size="25px"
+							press="onAddQuestion" />
+					</l:HorizontalLayout>
+					<List
+						id="questionList"
+						width="300PX"
+						mode="Delete"
+						delete="onDeleteQuestion"
+						visible="false"
+						items="{/questions}">
+						<CustomListItem>
+							<FlexBox
+								alignItems="Start"
+								justifyContent="Start"
+								width="100%">
+								<items>
+									<core:Icon
+										src="sap-icon://form"
+										size="25px"
+										press="onChangeQuestion"
+										class="sapUiTinyMarginTop sapUiTinyMarginEnd" />
+									<VBox>
+										<Text
+											text="{Name}"
+											width="200PX"
+											height="60PX"
+											class="sapUiTinyMarginTop" />
+										<Text
+											text="{Type}"
+											width="200PX"
+											height="40PX"
+											class="sapUiTinyMarginTop"></Text>
+									</VBox>
+								</items>
+							</FlexBox>
+						</CustomListItem>
+					</List>
+				</l:VerticalLayout>
+			</FlexBox>
+			<FlexBox
+				height="1600PX"
+				width="1100PX">
+				<List
+					width="1100PX"
+					id="questionDetailList"
+					visible="false"
+					items="{/questions}">
+					<CustomListItem>
+						<FlexBox
+							alignItems="Start"
+							justifyContent="Start"
+							width="100%">
+							<items>
+								<VBox width="1100PX">
+									<HBox width="1100PX">
+										<Text
+											text="  *   "
+											renderWhitespace="true"
+											visible="{Require}"></Text>
+										<Text
+											text="{Name}"
+											class="sapUiTinyMarginTop" />
+									</HBox>
+									<List
+										class="sapUiResponsiveMargin"
+										width="auto"
+										visible="{singalChoice}"
+										items="{Choices/}">
+										<CustomListItem>
+											<FlexBox
+												alignItems="Start"
+												justifyContent="Start"
+												width="100%">
+												<items>
+													<RadioButton
+														groupName="GroupA"
+														text="{}"
+														selected="false"
+														class="sapUiTinyMarginEnd" />
+												</items>
+											</FlexBox>
+										</CustomListItem>
+									</List>
+									<List
+										class="sapUiResponsiveMargin"
+										width="auto"
+										visible="{multiChoice}"
+										items="{Choices/}">
+										<CustomListItem>
+											<FlexBox
+												alignItems="Start"
+												justifyContent="Start"
+												width="100%">
+												<items>
+													<CheckBox
+														text="{}"
+														selected="false"
+														class="sapUiTinyMarginEnd" />
+												</items>
+											</FlexBox>
+										</CustomListItem>
+									</List>
+									<TextArea
+										rows="4"
+										placeholder="请输入答案"
+										width="1100PX"
+										visible="{freeAnswer}">
+									</TextArea>
+								</VBox>
+							</items>
+						</FlexBox>
+					</CustomListItem>
+				</List>
+			</FlexBox>
+		</l:HorizontalLayout>
+	</FlexBox>
+</core:View>
